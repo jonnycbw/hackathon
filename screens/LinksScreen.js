@@ -7,11 +7,39 @@ export default class LinksScreen extends React.Component {
     title: 'Links',
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      latitude: null,
+      longitude: null,
+      error: null,
+    };
+  }
+
+  componentDidMount() {
+    this.watchId = navigator.geolocation.watchPosition(
+      (position) => {
+        this.setState({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          error: null,
+        });
+      },
+      (error) => this.setState({ error: error.message }),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 10 },
+    );
+  }
+
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.watchId);
+  }
+
   handleGetDirections = () => {
     const data = {
        source: {
-        latitude: 53.76683,
-        longitude: -2.73466
+        latitude: this.state.latitude,
+        longitude: this.state.longitude
       },
       destination: {
         latitude: 53.7548565,
