@@ -1,14 +1,26 @@
 import React from 'react';
 import {Text} from 'react-native';
 export default class DetailsScreen extends React.Component {
+    constructor(props) {
+       super(props);
+
+       this.state = {
+         id:[],
+       };
+     }
+
     static navigationOptions = ({ navigation, screenProps }) => ({
       title: navigation.state.params.id
     });
 
 
+    componentDidMount()
+    {
+        this.setState({ id: this.props.navigation.state.params.id});
+    }
+
   render() {
-    /* Go ahead and delete ExpoConfigView and replace it with your
-     * content, we just wanted to give you a quick view of your config */
-    return <Text>Test</Text>;
+
+    return <Text>{this.state.id}</Text>;
   }
 }
