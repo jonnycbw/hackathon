@@ -26,15 +26,15 @@ export default class HomeScreen extends React.Component {
       <View style={styles.container}>
           <FlatList
             data={[
-                {key: 0, type:'Collection'},
-                {key: 1, type:'Collection'},
-                {key: 2, type:'Delivery'},
-                {key: 3, type:'Delivery'},
-                {key: 4, type:'Collection'},
-                {key: 5, type:'Delivery'},
+                {key: 0, type:'Collection', id:1},
+                {key: 1, type:'Collection', id:3},
+                {key: 2, type:'Delivery', id:5},
+                {key: 3, type:'Delivery', id:9},
+                {key: 4, type:'Collection', id:7},
+                {key: 5, type:'Delivery', id:29},
                ]}
                renderItem={({item}) =>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {name: 'Lucy'})}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {id:item.id})}>
                         <Text style={styles.item}>{item.type}</Text>
                     </TouchableOpacity>}
            />

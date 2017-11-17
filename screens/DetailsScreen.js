@@ -1,9 +1,10 @@
 import React from 'react';
 import {Text} from 'react-native';
 export default class DetailsScreen extends React.Component {
-  static navigationOptions = {
-    title: this.props,
-  };
+    static navigationOptions = ({ navigation, screenProps }) => ({
+      title: navigation.state.params.id
+    });
+
 
   render() {
     /* Go ahead and delete ExpoConfigView and replace it with your
